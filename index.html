@@ -1,0 +1,39 @@
+<html>
+
+<head>
+    <title>AddStudent</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body>
+    <input type="text" name="name" id="name" />
+    <input type="text" name="surname" id="surname" />
+    <input type="text" name="age" id="age" />
+    <input type="text" name="className" id="className" />
+    <input type="button" value="submit" id="submit" />
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#submit").click(function () {
+                let name = $("#name").val();
+                let surname = $("#surname").val();
+                let age = $("#age").val();
+                let className = $("#className").val();
+                let json = { name: name, surname: surname, age: age, className: className }
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost:8080/student",
+                    contentType: "application/json",
+                    data: JSON.stringify(json),
+                    success: function (params) {
+                        alert("OK");
+                    },
+                    error: function (params) {
+                        alert("ERROR");
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
